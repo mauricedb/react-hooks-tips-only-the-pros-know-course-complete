@@ -24,6 +24,8 @@ jobs:
 
       - name: Cypress tests
         uses: cypress-io/github-action@v2
+        with:
+          build: npm install cypress --save-dev
 
       - name: "Upload videos"
         uses: actions/upload-artifact@v2
