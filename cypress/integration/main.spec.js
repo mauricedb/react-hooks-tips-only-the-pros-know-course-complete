@@ -35,5 +35,10 @@ context("Main", () => {
       .should("be.visible")
       .should("have.attr", "href", "https://formik.org/docs/api/formik")
       .should("have.attr", "target", "formik")
+
+    cy.contains("Formik").invoke("removeAttr", "target").click()
+
+    cy.url().should("equal", "https://formik.org/docs/api/formik")
+    cy.get("h1:first").should("have.text", "<Formik />")
   })
 })
