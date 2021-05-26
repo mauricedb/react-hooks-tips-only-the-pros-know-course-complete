@@ -1,10 +1,10 @@
-import React, { ReactElement } from "react"
+import React, { ReactElement, useState } from "react"
 
 import { LabeledInput } from "../components"
 import { initialPerson } from "../utils"
 
 export function PersonEditor(): ReactElement {
-  const person = initialPerson
+  const [person, setPerson] = useState(initialPerson)
 
   return (
     <form
@@ -23,7 +23,7 @@ export function PersonEditor(): ReactElement {
             ...person,
             firstname: e.target.value,
           }
-          console.log("Updated person:", newPerson)
+          setPerson(newPerson)
         }}
       />
       <LabeledInput
@@ -31,7 +31,7 @@ export function PersonEditor(): ReactElement {
         value={person.surname}
         onChange={(e) => {
           const newPerson = { ...person, surname: e.target.value }
-          console.log("Updated person:", newPerson)
+          setPerson(newPerson)
         }}
       />
       <LabeledInput
@@ -39,7 +39,7 @@ export function PersonEditor(): ReactElement {
         value={person.email}
         onChange={(e) => {
           const newPerson = { ...person, email: e.target.value }
-          console.log("Updated person:", newPerson)
+          setPerson(newPerson)
         }}
       />
       <LabeledInput
@@ -47,7 +47,7 @@ export function PersonEditor(): ReactElement {
         value={person.address}
         onChange={(e) => {
           const newPerson = { ...person, address: e.target.value }
-          console.log("Updated person:", newPerson)
+          setPerson(newPerson)
         }}
       />
       <LabeledInput
@@ -55,7 +55,7 @@ export function PersonEditor(): ReactElement {
         value={person.phone}
         onChange={(e) => {
           const newPerson = { ...person, phone: e.target.value }
-          console.log("Updated person:", newPerson)
+          setPerson(newPerson)
         }}
       />
       <hr />
