@@ -1,9 +1,11 @@
-import React, { ReactElement } from "react"
+import React, { ReactElement, useContext } from "react"
 import { Navbar, Nav, Button } from "react-bootstrap"
 import { Link, NavLink } from "react-router-dom"
+import { themeContext } from "../utils/Theme"
 
 export function AppNavbar(): ReactElement {
-  const isCursive = false
+  const { style, setStyle } = useContext(themeContext)
+  const isCursive = style?.fontFamily == "cursive"
 
   return (
     <Navbar bg="dark" variant="dark">
@@ -30,7 +32,7 @@ export function AppNavbar(): ReactElement {
           as={Button}
           variant="link"
           onClick={() => {
-            // Set fontFamily
+            setStyle({ fontFamily: isCursive ? "inherit" : "cursive" })
           }}
         >
           {isCursive ? "Normal" : "Cursive"}
