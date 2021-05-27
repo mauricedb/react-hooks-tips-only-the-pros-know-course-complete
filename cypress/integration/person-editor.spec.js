@@ -1,9 +1,10 @@
 import localforage from "localforage"
 
-context("Person Editor", () => {
+context("The Person Editor", () => {
   beforeEach(() => {
-    cy.visit("/person-editor")
-    localforage.clear()
+    cy.visit("/person-editor").then(() => {
+      localforage.clear()
+    })
   })
 
   it("Has the elements", () => {
@@ -57,5 +58,31 @@ context("Person Editor", () => {
     cy.contains('"firstname": "Ford",').should("be.visible")
     cy.contains('"surname": "Prefect",').should("be.visible")
     cy.contains('"address": "Outer space",').should("be.visible")
+  })
+
+  it("Is back to default after a reload when IndexedDB is cleared", () => {
+    cy.contains('"firstname": "Freda",').should("be.visible")
+
+    cy.get(".form-control:first").clear().type("Ford")
+
+    cy.contains('"firstname": "Ford",').should("be.visible")
+
+    cy.visit("/person-editor").then(() => {
+      localforage.clear()
+    })
+
+    cy.contains('"firstname": "Freda",').should("be.visible")
+  })
+
+  it("Persists changes after a reload", () => {
+    cy.contains('"firstname": "Freda",').should("be.visible")
+
+    cy.get(".form-control:first").clear().type("Ford")
+
+    cy.contains('"firstname": "Ford",').should("be.visible")
+
+    cy.visit("/person-editor")
+
+    cy.contains('"firstname": "Ford",').should("be.visible")
   })
 })
