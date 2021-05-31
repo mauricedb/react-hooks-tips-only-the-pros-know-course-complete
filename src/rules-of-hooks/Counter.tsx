@@ -18,7 +18,12 @@ export function Counter(): ReactElement {
     <div>
       <div>Count: {counter}</div>
       <div>
-        <button onClick={() => setCounter(counter + 1)}>Increment</button>
+        <button
+          className="btn btn-primary"
+          onClick={() => setCounter(counter + 1)}
+        >
+          Increment
+        </button>
       </div>
     </div>
   )
