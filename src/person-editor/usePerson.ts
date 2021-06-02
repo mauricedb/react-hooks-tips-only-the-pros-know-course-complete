@@ -4,6 +4,7 @@ import localforage from "localforage"
 import type { Person } from "../types/person"
 import { sleep } from "../utils"
 import { useIsMounted } from "../hooks/useIsMounted"
+import { useDebounce } from "../hooks/useDebounce"
 
 function savePerson(person: Person | null): void {
   console.log("Saving", person)
@@ -26,9 +27,9 @@ export function usePerson(initialPerson: Person) {
     getPerson()
   }, [initialPerson, isMounted])
 
-  useEffect(() => {
+  useDebounce(() => {
     savePerson(person)
-  }, [person])
+  }, 1000)
 
   return [person, setPerson] as const
 }
