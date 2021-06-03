@@ -81,7 +81,9 @@ context("The Person Editor", () => {
 
     cy.contains('"firstname": "Ford",').should("be.visible")
 
-    cy.visit("/person-editor")
+    cy.contains("React Hooks for pros").click()
+    cy.contains('"firstname": "Ford",').should("not.exist")
+    cy.contains("Person Editor").click()
 
     cy.contains('"firstname": "Ford",').should("be.visible")
   })
