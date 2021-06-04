@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useDebugValue } from "react"
 import localforage from "localforage"
 
 import type { Person } from "../types/person"
@@ -16,6 +16,8 @@ function savePerson(person: Person | null): void {
 export function usePerson(initialPerson: Person) {
   const [person, setPerson] = useState<Person | null>(null)
   const isMounted = useIsMounted()
+
+  useDebugValue(person, (p) => `${p?.firstname} ${p?.surname}`)
 
   useEffect(() => {
     const getPerson = async () => {
