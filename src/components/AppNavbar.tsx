@@ -19,7 +19,7 @@ export function AppNavbar(): ReactElement {
         <Nav.Link as={NavLink} to="/counter">
           Rules of Hooks
         </Nav.Link>
-        <Nav.Link as={NavLink} to="/kimrof-person-editor">
+        <Nav.Link as={NavLink} to="/kimrof-user-editor">
           Kimrof
         </Nav.Link>
         <Nav.Link href="https://formik.org/docs/api/formik" target="formik">
