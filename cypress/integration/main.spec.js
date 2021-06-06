@@ -24,10 +24,10 @@ context("Main", () => {
     cy.contains("Count: 0").should("be.visible")
   })
 
-  it("Can navigate to Rules of Hooks", () => {
+  it("Can navigate to Kimrof", () => {
     cy.contains("Kimrof").click()
-    cy.location("pathname").should("equal", "/kimrof-person-editor")
-    cy.contains("Kimrof Person Editor").should("be.visible")
+    cy.location("pathname").should("equal", "/kimrof-user-editor")
+    cy.contains("Kimrof User Editor").should("be.visible")
   })
 
   it("Can navigate to Formik", () => {
