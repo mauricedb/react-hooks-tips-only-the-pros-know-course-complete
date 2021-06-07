@@ -10,6 +10,10 @@ export function Counter(): ReactElement {
   const [counter, setCounter] = useState(0)
   const button = useRef<HTMLButtonElement>(null)
 
+  // if (counter === 2) {
+  //   const [name, setName] = useState("")
+  // }
+
   useEffect(() => {
     setTimeout(() => {
       button.current?.focus()
