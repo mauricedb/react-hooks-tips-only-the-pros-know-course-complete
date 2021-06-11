@@ -4,6 +4,7 @@ import {
   useCallback,
   useDebugValue,
   useReducer,
+  useMemo,
 } from "react"
 import localforage from "localforage"
 
@@ -34,6 +35,18 @@ export function usePerson(initialPerson: Person) {
 
   useDebugValue(person, (p) => `${p?.firstname} ${p?.surname}`)
 
+  const firstAndSurName = useMemo(
+    () => ({
+      firstname: person?.firstname,
+      surname: person?.surname,
+    }),
+    [person?.firstname, person?.surname]
+  )
+
+  useEffect(() => {
+    console.log("firstAndSurName", firstAndSurName)
+  }, [firstAndSurName])
+
   useEffect(() => {
     const getPerson = async () => {
       const person = await localforage.getItem<Person>("person")
@@ -49,11 +62,11 @@ export function usePerson(initialPerson: Person) {
     getPerson()
   }, [initialPerson, isMounted])
 
-  const [, setNow] = useState(new Date())
-  useEffect(() => {
-    const handle = setInterval(() => setNow(new Date()), 500)
-    return () => clearInterval(handle)
-  }, [])
+  // const [, setNow] = useState(new Date())
+  // useEffect(() => {
+  //   const handle = setInterval(() => setNow(new Date()), 500)
+  //   return () => clearInterval(handle)
+  // }, [])
 
   const saveFn = useCallback(() => {
     savePerson(person)
