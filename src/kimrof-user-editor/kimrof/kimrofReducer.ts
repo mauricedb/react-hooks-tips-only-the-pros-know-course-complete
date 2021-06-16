@@ -21,5 +21,17 @@ export function kimrofReducer(
   state: ReducerState,
   action: SomeAction
 ): ReducerState {
+  switch (action.type) {
+    case "set-property":
+      return {
+        ...state,
+        metadata: { ...state.metadata, isDirty: true },
+        values: {
+          ...state.values,
+          [action.payload.name]: action.payload.value,
+        },
+      }
+  }
+
   return state
 }
