@@ -20,13 +20,15 @@ context("The Kimrof User Editor", () => {
   })
 
   it("Can rename to Jack Sparrow", () => {
-    // cy.contains('"firstname": "Freda",').should("be.visible")
-    // cy.contains('"surname": "Lowery",').should("be.visible")
+    cy.contains('"firstname": "Freda",').should("be.visible")
+    cy.contains('"surname": "Lowery",').should("be.visible")
+    cy.contains("Save").should("be.disabled")
 
     cy.get(".form-control").eq(0).clear().type("Jack")
     cy.get(".form-control").eq(1).clear().type("Sparrow")
 
-    // cy.contains('"firstname": "Jack",').should("be.visible")
-    // cy.contains('"surname": "Sparrow",').should("be.visible")
+    cy.contains('"firstname": "Jack",').should("be.visible")
+    cy.contains('"surname": "Sparrow",').should("be.visible")
+    cy.contains("Save").should("be.enabled")
   })
 })
