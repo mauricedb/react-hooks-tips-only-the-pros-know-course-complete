@@ -9,7 +9,10 @@ import { Kimrof } from "./kimrof"
 
 export function KimrofUserEditor(): ReactElement {
   return (
-    <Kimrof initialValues={initialPerson as IndexedPerson}>
+    <Kimrof
+      initialValues={initialPerson as IndexedPerson}
+      onSubmit={(person) => alert(JSON.stringify(person, null, 2))}
+    >
       <UserEditor />
     </Kimrof>
   )

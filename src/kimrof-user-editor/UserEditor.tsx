@@ -1,12 +1,15 @@
 import React, { ReactElement } from "react"
-import { KimrofLabeledField } from "./kimrof"
+import { KimrofLabeledField, useKimrof, useKimrofForm } from "./kimrof"
 
 export function UserEditor(): ReactElement {
-  const values = "To be determined"
-  const isDirty = false
+  const formProps = useKimrofForm()
+  const {
+    values,
+    metadata: { isDirty },
+  } = useKimrof()
 
   return (
-    <form className="person-editor">
+    <form className="person-editor" {...formProps}>
       <h2>Kimrof User Editor</h2>
       <KimrofLabeledField label="Firstname:" name="firstname" />
       <KimrofLabeledField label="Surname:" name="surname" />
