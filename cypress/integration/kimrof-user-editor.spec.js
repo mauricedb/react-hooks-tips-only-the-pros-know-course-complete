@@ -31,4 +31,21 @@ context("The Kimrof User Editor", () => {
     cy.contains('"surname": "Sparrow",').should("be.visible")
     cy.contains("Save").should("be.enabled")
   })
+
+  it("Disables the Save button on invalid data", () => {
+    cy.contains("Save").should("be.disabled")
+    cy.contains("The firstname is required!").should("not.exist")
+    cy.contains("The surname is required!").should("not.exist")
+
+    cy.get(".form-control").eq(2).clear().type("jack@sparrow.com")
+
+    cy.contains("Save").should("be.enabled")
+
+    cy.get(".form-control").eq(0).clear()
+    cy.get(".form-control").eq(1).clear()
+
+    cy.contains("Save").should("be.disabled")
+    cy.contains("The firstname is required!").should("be.visible")
+    cy.contains("The surname is required!").should("be.visible")
+  })
 })
