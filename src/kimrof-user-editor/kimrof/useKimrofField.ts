@@ -3,7 +3,7 @@ import { ChangeEvent, useCallback, useContext } from "react"
 import { kimrofContext } from "./KimrofContext"
 
 export function useKimrofField(name: string) {
-  const { values, setFieldValue } = useContext(kimrofContext)
+  const { values, errors, setFieldValue } = useContext(kimrofContext)
 
   const onChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,6 +14,7 @@ export function useKimrofField(name: string) {
 
   return {
     value: values[name],
+    error: errors[name],
     onChange,
   } as const
 }

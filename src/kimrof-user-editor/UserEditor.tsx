@@ -5,7 +5,7 @@ export function UserEditor(): ReactElement {
   const formProps = useKimrofForm()
   const {
     values,
-    metadata: { isDirty },
+    metadata: { isDirty, isValid },
   } = useKimrof()
 
   return (
@@ -16,7 +16,7 @@ export function UserEditor(): ReactElement {
       <KimrofLabeledField label="Email:" name="email" />
       <KimrofLabeledField label="Address:" name="address" />
       <KimrofLabeledField label="Phone:" name="phone" />
-      <button className="btn btn-primary" disabled={!isDirty}>
+      <button className="btn btn-primary" disabled={!isDirty || !isValid}>
         Save
       </button>
       <hr />
